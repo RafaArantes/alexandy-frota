@@ -1,0 +1,68 @@
+<h6 class="estiloRotas">Aterro Sanitário <i class="fa fa-long-arrow-right"></i> Cadastro <i class="fa fa-long-arrow-right"></i> Analise Gravimetria <i class="fa fa-long-arrow-right"></i> Pesquisar dados</h6>
+<br>
+<div style="width: 90%">
+	<div class="x_panel" style="margin-top:20px; margin-left: 6%; background: #f9f7f7">
+		<div class="x_title">
+			<h2><i class="fa fa-bars"></i> Analise Gravimetria e Volumetria <small>pesquisa & listagem</small></h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li style="top: 5px; float: right;"><a class="close-link" ng-click="printDiv('seila')"><i class="glyphicon glyphicon-print"></i></a></li>
+				</li> 
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="x_content"> 
+			<a class="btn btn-success" href="#!aterro_sanitario/administrativo/analise_graviometria/novo" style="margin-bottom:10px;margin-left:872px">Incluir novo</a> 
+			<div class="col-sm-4 col-xs-10">
+				<label>Cliente</label><br>
+				<input class="form-control col-sm-3" ng-model="gravimetriaPesquisa.cliente.nome" type="text">
+			</div>
+			<div class="col-sm-4 col-xs-10">
+				<label>Período de:</label><br>
+				<input class="form-control col-sm-3" ng-model="gravimetriaPesquisa.primeiroDiaAnalise" type="text">
+			</div>
+			<div class="col-sm-4 col-xs-10">
+				<label>a:</label><br>
+				<input class="form-control col-sm-3" ng-model="gravimetriaPesquisa.segundoDiaAnalise" type="text">
+			</div>
+			<div class="clearfix" style="border-bottom: 2px solid #E6E9ED; margin-top: 80px; margin-bottom: 15px"> </div>
+			<table class="table table-striped jambo_table bulk_action" style="margin-top: 10px">
+				<thead style="background: rgb(29, 101, 88)">
+					<tr>
+						<th style="text-align:center">Nome do Cliente</th>
+						<th style="text-align:center">Período análise de</th>
+						<th style="text-align:center">a</th>
+						<th style="text-align:center">Pesagem em kg</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody style="width: 100%;overflow-y:auto;height:300px;">
+					<!-- Linha que aparece quando não tem funcionário cadastrado -->
+					<tr ng-if="graviometrias.length == 0">
+						<td style="text-align:center" colspan="6">Não há Analises Gravimetria cadastradas</td>
+					</tr>
+					<!-- Montagem das linhas de funcionários com os botões de editar e excluir -->
+					<tr ng-repeat="gravimetria in graviometrias | filter:gravimetriaPesquisa" style="text-align:center">
+						<td style="text-align:center">{{gravimetria.cliente.nome}}</td>
+						<td style="text-align:center">{{gravimetria.primeiroDiaAnalise | date: "dd/MM/yyyy"}}</td>
+						<td style="text-align:center">{{gravimetria.segundoDiaAnalise | date: "dd/MM/yyyy"}}</td>
+						<td style="text-align:center">{{gravimetria.pesagemTotal}}</td>
+						<td>
+							<div class="row">
+								<div class="col-md-6">
+									<a class="btn btn-info btn-xs" style="margin-bottom:10px" href="#!aterro_sanitario/administrativo/analise_graviometria/edit/{{gravimetria.id}}"> <i class="fa fa-edit"></i> Editar</a>
+								</div>
+								<div class="col-md-6">
+									<button class="btn btn-danger btn-xs" style="margin-bottom:10px; margin-left: -2px" ng-click="excluirGravimetria($index)"><i class="fa fa-trash-o"></i>Excluir</button>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody> 
+			</table>
+			<div class="col-sm-3 col-xs-10" style="float:right">
+				<label>Total em kilos</label><br>
+				<input class="form-control col-sm-3" readonly ng-model="totalKg()" type="text">
+			</div>
+		</div>
+	</div> 
