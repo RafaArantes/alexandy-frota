@@ -13,9 +13,10 @@ var modulo = angular.module('main')
 			console.log($scope.veiculo);
 		}
 
-        $scope.veiculos = [];
+       
         $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/GetVeiculo') + '&callback=?', function(data){
 	        
+	         $scope.veiculos = [];
 	        $(JSON.parse(data.contents)['result']['items']).each(function(index,object){
 	            
 	            $scope.veiculos.push(object);
@@ -24,6 +25,7 @@ var modulo = angular.module('main')
 	        console.log($scope.veiculos);
 	        
         });
+
 
 
 	});
