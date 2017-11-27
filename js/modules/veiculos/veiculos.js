@@ -15,7 +15,8 @@ var modulo = angular.module('main')
         $http({
           method: 'POST',
           data: $scope.veiculo,
-          url: 'http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/CreateVeiculoAsync') + '&callback=?',
+          crossDomain: true,
+          url: 'http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/CreateVeiculoAsync'
         }).then(function successCallback(response) {
             
           }, function errorCallback(response) {
