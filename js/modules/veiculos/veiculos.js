@@ -13,6 +13,10 @@ var modulo = angular.module('main')
 			console.log($scope.veiculo);
 		}
 
+        $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/GetVeiculo') + '&callback=?', function(data){
+	    alert(data.contents);
+        });
+
 		$scope.veiculos = [
       {
         "dtEntregaVenda": "2017-11-12T20:27:23.539",
