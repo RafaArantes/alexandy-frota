@@ -13,7 +13,6 @@ var modulo = angular.module('main')
 			console.log($scope.veiculo);
 		}
 
-        $scope.veiculos = [{placa:"hahaha"}];
        
         $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/GetVeiculo') + '&callback=?', function(data){
 	        
