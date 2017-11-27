@@ -22,6 +22,7 @@ var modulo = angular.module('main')
 	        $(JSON.parse(data.contents)['result']['items']).each(function(index,object){
 	            
 	            $scope.veiculos.push(object);
+	            console.log($scope.veiculos);
 	            
 	        });
 	        
