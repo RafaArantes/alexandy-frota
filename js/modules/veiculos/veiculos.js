@@ -39,9 +39,21 @@ var modulo = angular.module('main')
 	        
 	        
         });
+        
+        $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Contrato/GetContrato') + '&callback=?', function(data){
+	        
+	         $scope.contratos = [];
+	        $(JSON.parse(data.contents)['result']['items']).each(function(index,object){
+	            
+	            $scope.contratos.push(object);
+	            $scope.$apply();
+	            
+	        });
+	        
+	        
+        });
 
 
-//
 
 
 	});
