@@ -169,7 +169,7 @@
                                                         <div class="form-group">
                                                             <div class="form-line">
                                                                 <select class="form-control" name="contratoId">
-                                                                    <option></option>
+                                                                    <option  ng-repeat="contrato in contratos" value="{{contrato.id}}">{{contrato.nome}}</option>
                                                                 </select>
                                                             </div>
                                                         </div>
