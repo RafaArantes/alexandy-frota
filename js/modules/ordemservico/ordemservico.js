@@ -197,12 +197,14 @@ var modulo = angular.module('main')
 			var motorista_id = $scope.ordemservico[i].motoristaId;
 			var veiculo_id = $scope.ordemservico[i].veiculoId;
 			var usersolicitacao_Id = $scope.ordemservico[i].userSolicitacaoId;
+			var unidade_Id = $scope.ordemservico[i].unidadeId;
 
+			var unidadeobj = usuario.find(item => item.id === unidade_Id);
 			var motoristaobject = $scope.motoristaObj.find(item => item.id === motorista_id);
 			var veiculoidobject = $scope.veiculoObj.find(item => item.id === veiculo_id);
 			var usersolidobject = usuario.find(item => item.id === usersolicitacao_Id);
 
-			console.log(usersolidobject)
+			console.log(unidadeobj)
 			$scope.ordemservico[i].motorista = motoristaobject;
 			$scope.ordemservico[i].veiculo = veiculoidobject;
 		};

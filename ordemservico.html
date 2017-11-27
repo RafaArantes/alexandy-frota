@@ -54,7 +54,7 @@
                         <div style="visibility: hidden; opacity: 0; position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: -1;" ng-click="clearCamps();" class="ordem-modal"></div>
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form name="ordemServicoForm" id="frm_create_ordem">
+                                <form action="post" name="ordemServicoForm" id="frm_create_ordem">
                                     <div class="modal-header">
                                         <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -83,7 +83,7 @@
                                                         <div class="form-group form-float">
                                                             <div class="input-field form-line">
                                                                 <select class="form-control" name="statusOrdemServicoId">
-                                                                  <option  ng-repeat="ordem in statusordem">{{ordem.nome}}</option>
+                                                                  <option  ng-repeat="ordem in statusordem" value="{{ordem.id}}">{{ordem.nome}}</option>
                                                                 </select>
                                                                 <label class="form-label" for="">Selecione Status da Ordem de Serviço</label>
                                                             </div>
@@ -206,7 +206,7 @@
                                                 </div>
                                             </div>
                                         <div role="tabpanel" ng-if="pag==2" class="tab-pane active animated fadeIn" id="adminonly">
-                                        <div class="row clearfix" style="margin-top:10px;">
+                                          <div class="row clearfix" style="margin-top:10px;">
                                             <div class="col-sm-6">
                                                 <div class="form-group form-float">
                                                     <div class="form-line">
