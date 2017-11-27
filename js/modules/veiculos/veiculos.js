@@ -14,6 +14,7 @@ var modulo = angular.module('main')
 		}
 
         $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/GetVeiculo') + '&callback=?', function(data){
+	        console.log(data.contents);
 	        $scope.veiculos = data.contents;
         });
 
