@@ -13,6 +13,16 @@ var modulo = angular.module('main')
 		$scope.setUserPage = function(){
 			$scope.pag = 1;
 		}
+		$scope.tipoveiculos = [
+      {
+        "nome": "Executivo",
+        "id": 2
+      },
+      {
+        "nome": "Popular",
+        "id": 1
+      }
+    ]
 		$scope.veiculoObj = [
       {
         "dtEntregaVenda": "2017-11-12T20:27:23.539",
@@ -193,6 +203,7 @@ var modulo = angular.module('main')
 	      "id": 1
 	    }
   	]
+
 		for(var i = 0; i < $scope.ordemservico.length; i++){
 			var motorista_id = $scope.ordemservico[i].motoristaId;
 			var veiculo_id = $scope.ordemservico[i].veiculoId;
@@ -208,12 +219,23 @@ var modulo = angular.module('main')
 			$scope.ordemservico[i].motorista = motoristaobject;
 			$scope.ordemservico[i].veiculo = veiculoidobject;
 		};
+		$scope.cadastrarOs = {};
+		$scope.cadastrarOs = function() {
+			var nSolicitacao = $scope.ordemservico.slice(-1)[0];
+		  var toNumber = Number(nSolicitacao.id);
+			$scope.ordemservico.id = toNumber + 1;
+			var conilas = (new Date()).toISOString()
+			$scope.ordemservico.dtSolicitacao = conilas;
+		}
 		$scope.editarOs = function(os){
 			var osc = $scope.ordemservico;
 			osc.placa = os.veiculo.placa;
 			osc.id = os.id;
 			osc.dtSaida = os.dtSaida;
 			osc.dtSolicitacao = os.dtSolicitacao;
+			osc.passageiro = os.passageiro;
+			osc.enderecoDestino = os.enderecoDestino;
+			osc.finalidadeServido = os.finalidadeServido
 		}
 		$scope.clearCamps = function() {
       $scope.ordemservico.ordemServicoForm = "";
