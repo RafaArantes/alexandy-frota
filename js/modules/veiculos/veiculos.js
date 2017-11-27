@@ -23,6 +23,7 @@ var modulo = angular.module('main')
 	            
 	            $scope.veiculos.push(object);
 	            console.log($scope.veiculos);
+	            $scope.$apply();
 	            
 	        });
 	        
