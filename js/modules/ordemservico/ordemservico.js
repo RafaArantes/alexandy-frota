@@ -13,7 +13,7 @@ var modulo = angular.module('main')
 		$scope.setUserPage = function(){
 			$scope.pag = 1;
 		}
-		var veiculoObj = [
+		$scope.veiculoObj = [
       {
         "dtEntregaVenda": "2017-11-12T20:27:23.539",
         "dtVenda": "2017-11-12T20:27:23.539",
@@ -53,7 +53,7 @@ var modulo = angular.module('main')
         "id": 1
       }
 		]
-		var motoristaObj = [
+		$scope.motoristaObj = [
       {
         "nome": "string",
         "telefone": null,
@@ -198,8 +198,8 @@ var modulo = angular.module('main')
 			var veiculo_id = $scope.ordemservico[i].veiculoId;
 			var usersolicitacao_Id = $scope.ordemservico[i].userSolicitacaoId;
 
-			var motoristaobject = motoristaObj.find(item => item.id === motorista_id);
-			var veiculoidobject = veiculoObj.find(item => item.id === veiculo_id);
+			var motoristaobject = $scope.motoristaObj.find(item => item.id === motorista_id);
+			var veiculoidobject = $scope.veiculoObj.find(item => item.id === veiculo_id);
 			var usersolidobject = usuario.find(item => item.id === usersolicitacao_Id);
 
 			console.log(usersolidobject)
