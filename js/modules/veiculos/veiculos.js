@@ -13,7 +13,7 @@ var modulo = angular.module('main')
         console.log($scope.veiculo);
         
         $http({
-          method: 'PUT',
+          method: 'POST',
           data: $scope.veiculo,
           url: 'http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/CreateVeiculoAsync'
         }).then(function successCallback(response) {
