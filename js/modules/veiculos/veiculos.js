@@ -5,8 +5,6 @@ var modulo = angular.module('main')
 
     console.log('Veiculos controller');
 
-    alert('ashdjkashkjdhaskjhdkjashkjhaskjdhask');
-
     //Entities to cadastrate
     $scope.veiculo = {};
 
