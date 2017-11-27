@@ -213,4 +213,7 @@ var modulo = angular.module('main')
 			osc.dtSaida = os.dtSaida;
 			osc.dtSolicitacao = os.dtSolicitacao;
 		}
+		$scope.clearCamps = function() {
+      $scope.ordemservico.ordemServicoForm = "";
+		}
 	})
