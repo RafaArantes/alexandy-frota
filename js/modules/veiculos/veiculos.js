@@ -16,12 +16,13 @@ var modulo = angular.module('main')
         $scope.veiculos = [];
         $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/GetVeiculo') + '&callback=?', function(data){
 	        
-	        $(JSON.parse(data.contents.result.items)).each(function(index,object){
+	        /*$(JSON.parse(data.contents)).each(function(index,object){
 	            
 	            $scope.veiculos.push(object);
 	            
 	        });
-	        console.log($scope.veiculos);
+	        console.log($scope.veiculos);*/
+	        console.log(JSON.parse(data.contents)['result']['items']);
         });
 
 
