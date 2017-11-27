@@ -68,5 +68,20 @@ var modulo = angular.module('main')
         });
 
     });
+    
+     $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/StatusVeiculo/GetStatusVeiculo') + '&callback=?', function(data)
+    {
+
+        $scope.statusveiculos = [];
+        $(JSON.parse(data.contents)['result']['items']).each(function(index, object)
+        {
+
+            $scope.statusveiculos.push(object);
+            $scope.$apply();
+
+        });
+
+    });
+    
 
 });
