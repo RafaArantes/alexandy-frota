@@ -13,9 +13,7 @@ var modulo = angular.module('main')
 			console.log($scope.veiculo);
 		}
 
-       $scope.veiculos = [];
-       
-       
+   
         $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/GetVeiculo') + '&callback=?', function(data){
 	        
 	         $scope.veiculos = [];
@@ -28,6 +26,22 @@ var modulo = angular.module('main')
 	        
 	        
         });
+        
+          $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Combustivel/GetCombustiveis') + '&callback=?', function(data){
+	        
+	         $scope.combustiveis = [];
+	        $(JSON.parse(data.contents)['result']['items']).each(function(index,object){
+	            
+	            $scope.combustiveis.push(object);
+	            $scope.$apply();
+	            
+	        });
+	        
+	        
+        });
+
+
+//
 
 
 	});
