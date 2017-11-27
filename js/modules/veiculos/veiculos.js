@@ -11,6 +11,16 @@ var modulo = angular.module('main')
     $scope.send = function()
     {
         console.log($scope.veiculo);
+        
+        $http({
+          method: 'PUT',
+          data: $scope.veiculo,
+          url: 'http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/CreateVeiculoAsync'
+        }).then(function successCallback(response) {
+            
+          }, function errorCallback(response) {
+          });
+        
     }
 
     $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/GetVeiculo') + '&callback=?', function(data)
