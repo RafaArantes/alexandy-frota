@@ -53,7 +53,7 @@ var modulo = angular.module('main')
 		$scope.departamentos = [
       {
         "nome": "DIREX",
-        "id": 2
+        "id": 5
       },
       {
         "nome": "PRESI",
@@ -75,7 +75,7 @@ var modulo = angular.module('main')
     }
     ]
 		$scope.statusordem = [
-    { 
+    {
         "nome": "Agendada",
         "id": 1
     },
@@ -88,8 +88,8 @@ var modulo = angular.module('main')
         "id": 3
     }
     ]
-		$scope.ordemservico = []; 
-		 
+		$scope.ordemservico = [];
+
     var usuario = [
       {
         "userName": "string",
@@ -100,25 +100,25 @@ var modulo = angular.module('main')
         "fullName": "string",
         "lastLoginTime": "2017-11-26T20:21:18.826Z",
         "creationTime": "2017-11-26T20:21:18.826Z",
-        "roleNames": [ 
+        "roleNames": [
           "string"
         ],
         "id": 1
       }
     ]
-     
+
     //Entities to populate
-    $scope.ordemcadastro = {}; 
+    $scope.ordemcadastro = {};
 
     $scope.send = function(){
-      $scope.unidade.id = $scope.selectedUnidade;
-      $$scope.departamento.id = $scope.selectedDepartamento;   
-      
-     
-      console.log($scope.ordemcadastro); 
+			$scope.ordemcadastro.departamentoId;
+			$scope.ordemcadastro.unidadeId;
+			$scope.ordemcadastro.statusOrdemServicoId;
+			$scope.ordemcadastro.diretoria;
+      console.log($scope.ordemcadastro);
     }
 	$scope.cadastrarOs = function() {
-		var nSolicitacao = $scope.ordemservico.slice(-1)[0];    
+		var nSolicitacao = $scope.ordemservico.slice(-1)[0];
     	var toNumber = Number(nSolicitacao.id);
 		$scope.ordemservico.id = toNumber + 1;
 		var conilas = (new Date()).toISOString()
@@ -127,47 +127,51 @@ var modulo = angular.module('main')
 
 	$scope.editarOs = function(os){
 		var osc = $scope.ordemservico;
-		osc.placa = os.veiculo.placa;  
-		osc.id = os.id; 
+		osc.placa = os.veiculo.placa;
+		osc.id = os.id;
 		osc.dtSaida = os.dtSaida;
 		osc.dtSolicitacao = os.dtSolicitacao;
-	} 
+	}
+
+	$scope.onSelect = function(){
+		$scope.unidades.filter(x => x.departamentoId == $scope.selectedDepartamentoId); 
+	}
 
     $scope.loadOrdemServico = function(){
       $http.get("http://frotasystembackend.azurewebsites.net/api/services/app/OrdemServico/GetOrdemServico").then(response => {
         $scope.ordemservico = response.data.result.items;
             for(var i = 0; i < $scope.ordemservico.length; i++){
-                var motorista_id = $scope.ordemservico[i].motoristaId; 
+                var motorista_id = $scope.ordemservico[i].motoristaId;
                 var veiculo_id = $scope.ordemservico[i].veiculoId;
                 var usersolicitacao_Id = $scope.ordemservico[i].userSolicitacaoId;
                 var unidade_Id = $scope.ordemservico[i].unidadeId;
 
                 var unidadeobj = usuario.find(item => item.id === unidade_Id);
                 var motoristaobject = $scope.motoristaObj.find(item => item.id === motorista_id);
-                var veiculoidobject = $scope.veiculoObj.find(item => item.id === veiculo_id); 
+                var veiculoidobject = $scope.veiculoObj.find(item => item.id === veiculo_id);
                 var usersolidobject = usuario.find(item => item.id === usersolicitacao_Id);
 
                 console.log(unidadeobj)
                 $scope.ordemservico[i].motorista = motoristaobject;
                 $scope.ordemservico[i].veiculo = veiculoidobject;
-          };  
-      })  
+          };
+      })
     }
 
     $scope.loadVeiculos = function(){
       $http.get("http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/GetVeiculo").then(response => {
           $scope.veiculoObj = response.data.result.items;
-          $scope.loadOrdemServico(); 
+          $scope.loadOrdemServico();
       });
     }
 
     $scope.loadAll = function(){
       $scope.loadVeiculos();
-      $scope.ordemcadastro.dtSolicitacao = "10/08/2014";   
+      $scope.ordemcadastro.dtSolicitacao = "10/08/2014";
       $scope.ordemcadastro.hrSolicitacao = "11:30";
     }
 
-    $scope.loadAll(); 
+    $scope.loadAll();
 
 		$scope.clearCamps = function() {
       $scope.ordemservico.ordemServicoForm = "";

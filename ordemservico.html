@@ -14,7 +14,7 @@
                                 <th></th>
                                 <th>Nº OS</th>
                                 <th>Status</th>
-                                <th>Data/Hora Atendimento</th> 
+                                <th>Data/Hora Atendimento</th>
                                 <th>Veículo</th>
                                 <th>Motorista</th>
                                 <th>Celular</th>
@@ -81,8 +81,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div class="input-field form-line">
-                                                                <select class="form-control" name="statusOrdemServicoId">
-                                                                  <option  ng-repeat="ordem in statusordem" value="{{ordem.nome}}">{{ordem.nome}}</option>
+                                                                <select class="form-control" ng-model="ordemcadastro.statusOrdemServicoId" ng-options="ordem.id as ordem.nome for ordem in statusordem" name="statusOrdemServicoId">
                                                                 </select>
                                                                 <label class="form-label" for="">Selecione Status da Ordem de Serviço</label>
                                                             </div>
@@ -127,37 +126,35 @@
                                                 </div>
                                                 <div class="row clearfix" style="margin-top:10px;">
                                                     <div class="col-sm-6">
-                                                        <div class="form-group form-float"> 
+                                                        <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <select class="form-control" name="Departamento" ng-model="selectedDepartamento">
-                                                                  <option ng-repeat="departamento in departamentos" value="{{departamento.id}}">{{departamento.nome}}</option>
+                                                                <select class="form-control" name="Departamento" ng-model="ordemcadastro.departamentoId" ng-options="departamento.id as departamento.nome for departamento in departamentos">
                                                                 </select>
-                                                                <label class="form-label" for="">Departamento</label> 
+                                                                <label class="form-label" for="">Departamento</label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <select class="form-control" name="unidadeId" ng-model="selectedUnidade">
-                                                                    <option  ng-repeat="unidade in unidades" value="{{unidade.id}}">{{unidade.nome}}</option>
+                                                                <select class="form-control" name="unidadeId" ng-model="ordemcadastro.unidadeId" ng-options="unidade.id as unidade.nome for unidade in unidades">
                                                                 </select>
-                                                                <label class="form-label" for="">Unidade</label> 
+                                                                <label class="form-label" for="">Unidade</label>
                                                             </div>
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                                 <div class="row clearfix" style="margin-top:10px;">
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <input id="ramal" type="text" name="ramal" required maxlength="32" class="validate form-control">
+                                                                <input id="ramal" type="text" name="ramal" ng-model="ordemcadastro.ramal" required maxlength="32" class="validate form-control">
                                                                 <label for="ramal" class="form-label">Ramal *</label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6"> 
-                                                        <div class="form-group form-float"> 
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group form-float">
                                                             <div  class="form-line">
                                                               <input id="fabricante" type="text" name="passageiro" ng-model="ordemcadastro.passageiro" required maxlength="32" class="validate form-control">
                                                               <label for="fabricante" class="form-label">Passageiro *</label>
@@ -169,7 +166,7 @@
                                                   <div class="col-sm-6">
                                                       <div class="form-group form-float">
                                                           <div  class="form-line disable">
-                                                              <input id="usuarioSolicitante" type="text" name="usuarioSolicitante" ng-disabled="pag==1" required maxlength="32" class="validate form-control">
+                                                              <input id="usuarioSolicitante" type="text" name="usuarioSolicitante" ng-model="ordemcadastro.usuarioSolicitante" ng-disabled="pag==1" required maxlength="32" class="validate form-control">
                                                               <label for="usuarioSolicitante" class="form-label">Usuario Solicitante *</label>
                                                           </div>
                                                       </div>
@@ -177,8 +174,7 @@
                                                   <div class="col-sm-6">
                                                       <div class="form-group form-float">
                                                           <div  class="form-line">
-                                                              <select class="form-control" name="Diretoria">
-                                                                  <option  ng-repeat="diretoria in diretorias" value="{{diretoria.id}}">{{diretoria.nome}}</option>
+                                                              <select class="form-control" ng-model="ordemcadastro.diretoria" ng-options="diretory.id as diretory.nome for diretory in diretorias" name="Diretoria">
                                                               </select>
                                                               <label class="form-label" for="">Diretoria</label>
                                                           </div>
@@ -260,14 +256,14 @@
                                           </div>
                                         </div>
                                       </div>
-                                    </div> 
+                                    </div>
                                     <div class="modal-footer">
                                         <button data-dismiss="modal" type="button" class="btn btn-default waves-effect">
                                             Cancelar
-                                        </button> 
+                                        </button>
                                         <button  ng-click="send()" class="btn btn-primary waves-effect">
                                             Agendar OS
-                                        </button> 
+                                        </button>
                                     </div>
                                 </form>
                             </div>
