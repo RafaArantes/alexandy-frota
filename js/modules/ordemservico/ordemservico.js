@@ -61,32 +61,32 @@ var modulo = angular.module('main')
       }
     ]
 	$scope.unidades = [
-        {
-            "nome": "COINT",
-            "ramal": "1000",
-            "departamentoId": 1,
-            "id": 2
-        },
-        {
-            "nome": "DIORF",
-            "ramal": "2000",
-            "departamentoId": 2,
-            "id": 1
-        }
-        ]
-    		$scope.statusordem = [
-        { 
-            "nome": "Agendada",
-            "id": 1
-        },
-        {
-            "nome": "Em Andamento",
-            "id": 2
-        },
-        {
-            "nome": "Executada",
-            "id": 3
-        }
+    {
+        "nome": "COINT",
+        "ramal": "1000",
+        "departamentoId": 1,
+        "id": 2
+    },
+    {
+        "nome": "DIORF",
+        "ramal": "2000",
+        "departamentoId": 2,
+        "id": 1
+    }
+    ]
+		$scope.statusordem = [
+    { 
+        "nome": "Agendada",
+        "id": 1
+    },
+    {
+        "nome": "Em Andamento",
+        "id": 2
+    },
+    {
+        "nome": "Executada",
+        "id": 3
+    }
     ]
 		$scope.ordemservico = []; 
 		 
@@ -111,8 +111,10 @@ var modulo = angular.module('main')
     $scope.ordemcadastro = {}; 
 
     $scope.send = function(){
-      $scope.selectedUnidade = $scope.unidade.id;
-      $scope.selectedDepartamento = $scope.departamento.id;   
+      $scope.unidade.id = $scope.selectedUnidade;
+      $$scope.departamento.id = $scope.selectedDepartamento;   
+      
+     
       console.log($scope.ordemcadastro); 
     }
 	$scope.cadastrarOs = function() {
