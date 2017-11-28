@@ -115,22 +115,21 @@ var modulo = angular.module('main')
       $scope.ordemcadastro.departamentoId = $scope.selectedDepartamento;   
       console.log($scope.ordemcadastro); 
     }
+	$scope.cadastrarOs = function() {
+		var nSolicitacao = $scope.ordemservico.slice(-1)[0];    
+    	var toNumber = Number(nSolicitacao.id);
+		$scope.ordemservico.id = toNumber + 1;
+		var conilas = (new Date()).toISOString()
+		$scope.ordemservico.dtSolicitacao = conilas;
+	}
 
-		$scope.cadastrarOs = function() {
-			var nSolicitacao = $scope.ordemservico.slice(-1)[0];    
-		  var toNumber = Number(nSolicitacao.id);
-			$scope.ordemservico.id = toNumber + 1;
-			var conilas = (new Date()).toISOString()
-			$scope.ordemservico.dtSolicitacao = conilas;
-		}
-
-		$scope.editarOs = function(os){
-			var osc = $scope.ordemservico;
-			osc.placa = os.veiculo.placa;  
-			osc.id = os.id; 
-			osc.dtSaida = os.dtSaida;
-			osc.dtSolicitacao = os.dtSolicitacao;
-		} 
+	$scope.editarOs = function(os){
+		var osc = $scope.ordemservico;
+		osc.placa = os.veiculo.placa;  
+		osc.id = os.id; 
+		osc.dtSaida = os.dtSaida;
+		osc.dtSolicitacao = os.dtSolicitacao;
+	} 
 
     $scope.loadOrdemServico = function(){
       $http.get("http://frotasystembackend.azurewebsites.net/api/services/app/OrdemServico/GetOrdemServico").then(response => {
@@ -172,4 +171,3 @@ var modulo = angular.module('main')
       $scope.ordemservico.ordemServicoForm = "";
 		}
 	})
- 
