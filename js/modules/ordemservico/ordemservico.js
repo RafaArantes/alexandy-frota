@@ -60,33 +60,33 @@ var modulo = angular.module('main')
         "id": 1
       }
     ]
-		$scope.unidades = [
-      {
-        "nome": "COINT",
-        "ramal": "1000",
-        "departamentoId": 1,
-        "id": 2
-      },
-      {
-        "nome": "DIORF",
-        "ramal": "2000",
-        "departamentoId": 2,
-        "id": 1
-      }
-    ]
-		$scope.statusordem = [
-      { 
-        "nome": "Agendada",
-        "id": 1
-      },
-      {
-        "nome": "Em Andamento",
-        "id": 2
-      },
-      {
-        "nome": "Executada",
-        "id": 3
-      }
+	$scope.unidades = [
+        {
+            "nome": "COINT",
+            "ramal": "1000",
+            "departamentoId": 1,
+            "id": 2
+        },
+        {
+            "nome": "DIORF",
+            "ramal": "2000",
+            "departamentoId": 2,
+            "id": 1
+        }
+        ]
+    		$scope.statusordem = [
+        { 
+            "nome": "Agendada",
+            "id": 1
+        },
+        {
+            "nome": "Em Andamento",
+            "id": 2
+        },
+        {
+            "nome": "Executada",
+            "id": 3
+        }
     ]
 		$scope.ordemservico = []; 
 		 
