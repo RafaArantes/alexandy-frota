@@ -111,8 +111,8 @@ var modulo = angular.module('main')
     $scope.ordemcadastro = {}; 
 
     $scope.send = function(){
-      $scope.unidade.id = $scope.selectedUnidade;
-      $scope.departamento.id = $scope.selectedDepartamento;   
+      $scope.selectedUnidade = $scope.unidade.id;
+      $scope.selectedDepartamento = $scope.departamento.id;   
       console.log($scope.ordemcadastro); 
     }
 	$scope.cadastrarOs = function() {
