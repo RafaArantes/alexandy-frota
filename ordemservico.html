@@ -15,7 +15,7 @@
                                 <th></th>
                                 <th>Nº OS</th>
                                 <th>Status</th>
-                                <th>Data/Hora Atendimento</th>
+                                <th>Data/Hora Atendimento</th> 
                                 <th>Veículo</th>
                                 <th>Motorista</th>
                                 <th>Celular</th>
@@ -40,13 +40,13 @@
                                 <td>{{os.passageiro}}</td>
                                 <td>{{os.localSaida}}</td>
                                 <td>
-                                    <a href="javascript:void(0);" ng-click="editarOs(os)" data-toggle="modal" data-target="#OrdemModal" class="waves-effect waves-block"><i class="material-icons">create</i></a>
-                                    <a href="javascript:void(0);" class="waves-effect waves-block"><i class="material-icons">delete_sweep</i></a>
+                                    <a ng-click="editarOs(os)" data-toggle="modal" data-target="#OrdemModal" class="waves-effect waves-block"><i class="material-icons">create</i></a>
+                                    <a class="waves-effect waves-block"><i class="material-icons">delete_sweep</i></a>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary waves-effect m-r-20" data-toggle="modal" data-target="#OrdemModal">Adicionar Veículo</button>
+                    <button type="button" class="btn btn-primary waves-effect m-r-20" ng-click="cadastrarOs()" data-toggle="modal" data-target="#OrdemModal">Adicionar Veículo</button>
 
                     <!-- Modal Ordem -->
 
@@ -54,7 +54,7 @@
                         <div style="visibility: hidden; opacity: 0; position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: -1;" ng-click="clearCamps();" class="ordem-modal"></div>
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <form action="post" name="ordemServicoForm" id="frm_create_ordem">
+                                <form name="ordemServicoForm" id="frm_create_ordem">
                                     <div class="modal-header">
                                         <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -74,7 +74,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line disable">
-                                                                <input id="reserva" ng-model="ordemservico.id" type="text" name="numeroReserva" ng-disabled="pag==1" required maxlength="32" class="validate form-control">
+                                                                <input id="reserva" type="text" name="numeroReserva" ng-disabled="pag==1" required maxlength="32" class="validate form-control">
                                                                 <label for="reserva" class="form-label">Numero Reserva *</label>
                                                             </div>
                                                         </div>
@@ -95,7 +95,7 @@
                                                         <div class="form-group">
                                                             <div class="form-line">
                                                                 <span>Data Saida*</span>
-                                                                <input class="form-control" value="{{ordemservico.dtSaida | date: 'yyyy-MM-dd'}}"type="date" name="" value="">
+                                                                <input class="form-control" value="{{ordemcadastro.dtSaida}}" type="date" name="" value="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -103,7 +103,7 @@
                                                         <div class="form-group">
                                                             <div  class="form-line">
                                                                 <span>Data Solicitação</span>
-                                                                <input class="form-control" type="date" name="" ng-disabled="pag==1" value="{{ordemservico.dtSaida | date: 'yyyy-MM-dd'}}">
+                                                                <input class="form-control" type="text" name="" ng-disabled="pag==1" value="{{ordemcadastro.dtSolicitacao}}">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -112,7 +112,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line disable">
-                                                                <input id="hrSolicitacao" type="text" value="{{ordemservico.dtSolicitacao | date: 'hh:mm'}}" name="hrSolicitacao" ng-disabled="pag==1" required maxlength="32" class="validate form-control">
+                                                                <input id="hrSolicitacao" type="text" value="{{ordemcadastro.hrSolicitacao}}" name="hrSolicitacao" ng-disabled="pag==1" required maxlength="32" class="validate form-control">
                                                                 <label for="hrSolicitacao" class="form-label">Hora da Solicitação *</label>
                                                             </div>
                                                         </div>
@@ -120,7 +120,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <input id="hrSaida" value="{{ordemservico.dtSaida | date: 'hh:mm'}}" type="text" name="hrSaida" required maxlength="32" class="validate form-control">
+                                                                <input id="hrSaida" value="{{ordemcadastro.hrSaida}}" type="text" name="hrSaida" required maxlength="32" class="validate form-control">
                                                                 <label for="hrSaida" class="form-label">Hora Saida *</label>
                                                             </div>
                                                         </div>
@@ -130,37 +130,37 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <select class="form-control" name="Departamento">
+                                                                <select class="form-control" name="Departamento" ng-model="selectedDepartamento">
                                                                   <option  ng-repeat="departamento in departamentos" value="{{departamento.id}}">{{departamento.nome}}</option>
                                                                 </select>
-                                                                <label class="form-label" for="">Departamento</label>
+                                                                <label class="form-label" for="">Departamento</label> 
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <select class="form-control" name="unidadeId">
+                                                                <select class="form-control" name="unidadeId" ng-model="selectedUnidade">
                                                                     <option  ng-repeat="unidade in unidades" value="{{unidade.id}}">{{unidade.nome}}</option>
                                                                 </select>
-                                                                <label class="form-label" for="">Unidade</label>
+                                                                <label class="form-label" for="">Unidade</label> 
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> 
                                                 </div>
                                                 <div class="row clearfix" style="margin-top:10px;">
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <input id="ramal" type="text" name="ramal" required maxlength="32" class="validate form-control">
+                                                                <input id="ramal" type="text" name="ramal" required maxlength="32" ng-disabled="pag==1" class="validate form-control">
                                                                 <label for="ramal" class="form-label">Ramal *</label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group form-float">
+                                                    <div class="col-sm-6"> 
+                                                        <div class="form-group form-float"> 
                                                             <div  class="form-line">
-                                                              <input id="fabricante" type="text" name="passageiro" required maxlength="32" class="validate form-control">
+                                                              <input id="fabricante" type="text" name="passageiro" ng-model="ordemcadastro.passageiro" required maxlength="32" class="validate form-control">
                                                               <label for="fabricante" class="form-label">Passageiro *</label>
                                                             </div>
                                                         </div>
@@ -190,7 +190,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <input id="endrDestino" type="text" name="endrDestino" required maxlength="32" class="validate form-control">
+                                                                <input id="endrDestino" type="text" ng-model="ordemcadastro.enderecoDestino" name="endrDestino" required maxlength="32" class="validate form-control">
                                                                 <label for="endrDestino" class="form-label">Endereço Destino do Usuário Solicitante *</label>
                                                             </div>
                                                         </div>
@@ -198,7 +198,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group form-float">
                                                             <div  class="form-line">
-                                                                <input id="fnServico" type="text" name="fnServico" required maxlength="32" class="validate form-control">
+                                                                <input id="fnServico" type="text" name="fnServico" ng-model="ordemcadastro.finalidadeServico" required maxlength="32" class="validate form-control">
                                                                 <label for="fnServico" class="form-label">Finalidade do Serviço *</label>
                                                             </div>
                                                         </div>
@@ -239,8 +239,7 @@
                                                   <div class="form-group form-float">
                                                       <div class="form-line">
                                                           <select class="form-control" name="Departamento">
-                                                              <option>
-                                                              </option>
+                                                              <option ng-repeat="tipoveiculo in tipoveiculos" value="{{tipoveiculo.id}}">{{tipoveiculo.nome}}</option>
                                                           </select>
                                                           <label class="form-label" for="">Tipo Veiculo</label>
                                                       </div>
@@ -266,10 +265,10 @@
                                     <div class="modal-footer">
                                         <button data-dismiss="modal" type="button" class="btn btn-default waves-effect">
                                             Cancelar
-                                        </button>
-                                        <button type="submit" ng-click="send()" class="btn btn-primary waves-effect">
+                                        </button> 
+                                        <button  ng-click="send()" class="btn btn-primary waves-effect">
                                             Agendar OS
-                                        </button>
+                                        </button> 
                                     </div>
                                 </form>
                             </div>

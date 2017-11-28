@@ -16,6 +16,16 @@ var modulo = angular.module('main')
 
 		$scope.veiculoObj = []
 
+		$scope.tipoveiculos = [
+      {
+        "nome": "Executivo",
+        "id": 2
+      },
+      {
+        "nome": "Popular",
+        "id": 1
+      }
+    ]
 		$scope.motoristaObj = [
       {
         "nome": "string",
@@ -79,7 +89,7 @@ var modulo = angular.module('main')
       }
     ]
 		$scope.ordemservico = []; 
-		
+		 
     var usuario = [
       {
         "userName": "string",
@@ -90,21 +100,34 @@ var modulo = angular.module('main')
         "fullName": "string",
         "lastLoginTime": "2017-11-26T20:21:18.826Z",
         "creationTime": "2017-11-26T20:21:18.826Z",
-        "roleNames": [
+        "roleNames": [ 
           "string"
         ],
         "id": 1
       }
     ]
+     
+    //Entities to populate
+    $scope.ordemcadastro = {}; 
 
     $scope.send = function(){
-      console.log($scope.ordem); 
+      $scope.ordemcadastro.unidadeId = $scope.selectedUnidade;
+      $scope.ordemcadastro.departamentoId = $scope.selectedDepartamento;   
+      console.log($scope.ordemcadastro); 
     }
+
+		$scope.cadastrarOs = function() {
+			var nSolicitacao = $scope.ordemservico.slice(-1)[0];    
+		  var toNumber = Number(nSolicitacao.id);
+			$scope.ordemservico.id = toNumber + 1;
+			var conilas = (new Date()).toISOString()
+			$scope.ordemservico.dtSolicitacao = conilas;
+		}
 
 		$scope.editarOs = function(os){
 			var osc = $scope.ordemservico;
 			osc.placa = os.veiculo.placa;  
-			osc.id = os.id;
+			osc.id = os.id; 
 			osc.dtSaida = os.dtSaida;
 			osc.dtSolicitacao = os.dtSolicitacao;
 		} 
@@ -126,8 +149,8 @@ var modulo = angular.module('main')
                 console.log(unidadeobj)
                 $scope.ordemservico[i].motorista = motoristaobject;
                 $scope.ordemservico[i].veiculo = veiculoidobject;
-          };   
-      }) 
+          };  
+      })  
     }
 
     $scope.loadVeiculos = function(){
@@ -139,11 +162,14 @@ var modulo = angular.module('main')
 
     $scope.loadAll = function(){
       $scope.loadVeiculos();
+      $scope.ordemcadastro.dtSolicitacao = "10/08/2014";   
+      $scope.ordemcadastro.hrSolicitacao = "11:30";
     }
 
-    $scope.loadAll();
+    $scope.loadAll(); 
 
 		$scope.clearCamps = function() {
       $scope.ordemservico.ordemServicoForm = "";
 		}
 	})
+ 
