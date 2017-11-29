@@ -27,13 +27,16 @@ var modulo = angular.module('main')
     {
 
         $scope.veiculos = [];
-        $(data.contents.result.items).each(function(index, object)
+        
+        console.log(data.contents)
+        
+        /*$(JSON.parse(data.contents)['result']['items']).each(function(index, object)
         {
 
             $scope.veiculos.push(object);
             $scope.$apply();
 
-        });
+        });*/
 
     });
 
