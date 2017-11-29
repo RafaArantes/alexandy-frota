@@ -28,7 +28,7 @@ var modulo = angular.module('main')
 
         $scope.veiculos = [];
         
-        console.log(data.contents)
+        console.log(data)
         
         /*$(JSON.parse(data.contents)['result']['items']).each(function(index, object)
         {
