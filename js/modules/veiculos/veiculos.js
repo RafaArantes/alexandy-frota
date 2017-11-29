@@ -67,7 +67,7 @@ var modulo = angular
       }
     );
 
-    $.getJSON(
+                    $.getJSON(
       "http://frotasystembackend.azurewebsites.net/api/services/app/TipoVeiculo/GetTipoVeiculo"
        ,
       function(data) {
