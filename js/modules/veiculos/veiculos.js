@@ -38,12 +38,8 @@ var modulo = angular
       }
     );
 
-    $.getJSON(
-      "http://www.whateverorigin.org/get?url=" +
-        encodeURIComponent(
-          "http://frotasystembackend.azurewebsites.net/api/services/app/Combustivel/GetCombustiveis"
-        ) +
-        "&callback=?",
+     $.getJSON(
+      "http://frotasystembackend.azurewebsites.net/api/services/app/Combustivel/GetCombustiveis", function(data)
       function(data) {
         $scope.combustiveis = [];
         $(JSON.parse(data.contents)["result"]["items"]).each(function(
@@ -56,12 +52,9 @@ var modulo = angular
       }
     );
 
-    $.getJSON(
-      "http://www.whateverorigin.org/get?url=" +
-        encodeURIComponent(
-          "http://frotasystembackend.azurewebsites.net/api/services/app/Contrato/GetContrato"
-        ) +
-        "&callback=?",
+
+         $.getJSON(
+      "http://frotasystembackend.azurewebsites.net/api/services/app/Contrato/GetContrato",
       function(data) {
         $scope.contratos = [];
         $(JSON.parse(data.contents)["result"]["items"]).each(function(
@@ -75,11 +68,8 @@ var modulo = angular
     );
 
     $.getJSON(
-      "http://www.whateverorigin.org/get?url=" +
-        encodeURIComponent(
-          "http://frotasystembackend.azurewebsites.net/api/services/app/TipoVeiculo/GetTipoVeiculo"
-        ) +
-        "&callback=?",
+      "http://frotasystembackend.azurewebsites.net/api/services/app/TipoVeiculo/GetTipoVeiculo"
+       ,
       function(data) {
         $scope.tiposveiculo = [];
         $(JSON.parse(data.contents)["result"]["items"]).each(function(
@@ -92,12 +82,9 @@ var modulo = angular
       }
     );
 
-    $.getJSON(
-      "http://www.whateverorigin.org/get?url=" +
-        encodeURIComponent(
-          "http://frotasystembackend.azurewebsites.net/api/services/app/StatusVeiculo/GetStatusVeiculo"
-        ) +
-        "&callback=?",
+     $.getJSON(
+      "http://frotasystembackend.azurewebsites.net/api/services/app/StatusVeiculo/GetStatusVeiculo"
+        ,
       function(data) {
         $scope.statusveiculos = [];
         $(JSON.parse(data.contents)["result"]["items"]).each(function(
