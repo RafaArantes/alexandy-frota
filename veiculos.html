@@ -154,7 +154,7 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <div class="form-line">
-                            <select class="form-control" name="statusVeiculoId">
+                            <select class="form-control" name="statusVeiculoId" ng-model="veiculo.statusVeiculoId">
                               <option ng-repeat="statusveiculo in statusveiculos" value="{{statusveiculo.id}}">{{statusveiculo.nome}}</option>
                             </select>
                           </div>
@@ -174,7 +174,7 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <div class="form-line">
-                            <select class="form-control" name="contratoId">
+                            <select class="form-control" name="contratoId" ng-model="veiculo.contratoId">
                               <option ng-repeat="contrato in contratos" value="{{contrato.id}}">{{contrato.nome}}</option>
                             </select>
                           </div>
@@ -184,7 +184,7 @@
                         <div class="form-group">
                           <div class="form-line">
 
-                            <select class="form-control" name="tipoVeiculoId">
+                            <select class="form-control" name="tipoVeiculoId" ng-model="veiculo.tipoVeiculoId">
                               <option ng-repeat="tipoveiculo in tiposveiculo" value="{{tipoveiculo.id}}">{{tipoveiculo.nome}}</option>
                             </select>
                           </div>
