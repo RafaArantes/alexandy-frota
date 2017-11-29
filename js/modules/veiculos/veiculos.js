@@ -15,6 +15,7 @@ var modulo = angular.module('main')
         $http({
           method: 'POST',
           data: $scope.veiculo,
+          contentType: "application/json; charset=utf-8",
           url: 'http://frotasystembackend.azurewebsites.net/api/services/app/Veiculo/CreateVeiculoAsync'
         }).then(function successCallback(response) {
             
